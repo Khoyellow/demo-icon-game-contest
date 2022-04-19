@@ -135,6 +135,9 @@ function loadlevel2 () {
     tiles.setCurrentTilemap(tilemap`level2`)
     tiles.placeOnTile(me, tiles.getTileLocation(15, 15))
     game.splash("The dark cave")
+    multilights.toggleLighting(true)
+    multilights.addLightSource(me)
+    multilights.bandWidthOf(me, 20)
 }
 controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
     animation.runImageAnimation(
@@ -717,6 +720,7 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Food, function (sprite, otherSpr
 })
 scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.collectibleRedCrystal, function (sprite, location) {
     info.stopCountdown()
+    multilights.toggleLighting(false)
     puzzle2()
 })
 function puzzle1 () {
